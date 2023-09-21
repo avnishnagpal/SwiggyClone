@@ -2,11 +2,14 @@ import RestCard from "./RestCard";
 //import rest from "../utilis/mockData";
 import Shimmer from "./Shimmer";
 import { useState, useEffect } from "react";
+import { PromotedRestCard } from "./RestCard";
 
 const Body = () => {
   const [restData, setRestData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [filterRestro, setFilterRestro] = useState([]);
+
+  const RestCardPromoted = PromotedRestCard(RestCard);
 
   useEffect(() => {
     fetchData();
@@ -66,7 +69,15 @@ const Body = () => {
         <div className="Card-Container">
           {filterRestro &&
             filterRestro.map((r) => {
-              return (
+              return r.info.promoted == true ? (
+                <RestCardPromoted
+                  key={r.info.id}
+                  name1={r.info.name}
+                  cuisine={r.info.cuisines}
+                  ratings={r.info.avgRating}
+                  imageId={r.info.cloudinaryImageId}
+                />
+              ) : (
                 <RestCard
                   key={r.info.id}
                   name1={r.info.name}

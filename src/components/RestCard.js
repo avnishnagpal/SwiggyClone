@@ -17,4 +17,17 @@ const RestCard = (props) => {
   );
 };
 
+//Higher Order Component
+
+export const PromotedRestCard = (RestCard) => {
+  return (props) => {
+    return (
+      <>
+        <label>Promoted</label>
+        <RestCard {...props} />
+      </>
+    );
+  };
+};
+
 export default RestCard;
